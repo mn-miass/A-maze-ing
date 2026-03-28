@@ -40,6 +40,7 @@ def check_file(file):
             if is_comment(line) == False and line != "":
                 file_case = FILE_NOT_EMPTY
                 key, value = line.split("=", 1)
+                key = key.strip()
                 dict_values = dict_values | {key.upper(): value}
         if file_case == FILE_EMPTY:
             raise NoInput

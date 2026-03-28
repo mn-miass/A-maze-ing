@@ -8,12 +8,18 @@ class   InvalidSyntax(Exception):
     def __init__(self):
         super().__init__("Invalid input was given")
 
+
 class   NoInput(Exception):
     def __init__(self, msg = "No input was provided"):
         super().__init__(msg)
 
 
-class   InvalidWidth(Exception):
+class   InvalidValues(Exception):
+    def __init__(self, msg):
+        super().__init__(msg)
+
+
+class   InvalidWidth(InvalidValues):
     def __init__(self, flag):
         if flag == NO_INPUT:
             msg = ("[ALERT]: the WIDTH wasn't gived")
@@ -22,7 +28,7 @@ class   InvalidWidth(Exception):
         super().__init__(msg)
 
 
-class   InvalidHeight(Exception):
+class   InvalidHeight(InvalidValues):
     def __init__(self, flag):
         if flag == NO_INPUT:
             msg = ("[ALERT]: the HEIGHT wasn't gived")
@@ -31,7 +37,7 @@ class   InvalidHeight(Exception):
         super().__init__(msg)
 
 
-class   InvalidEntry(Exception):
+class   InvalidEntry(InvalidValues):
     def __init__(self, flag):
         if flag == NO_INPUT:
             msg = ("[ALERT]: the ENTRY wasn't gived")
@@ -40,7 +46,7 @@ class   InvalidEntry(Exception):
         super().__init__(msg)
 
 
-class   InvalidExit(Exception):
+class   InvalidExit(InvalidValues):
     def __init__(self, flag):
         if flag == NO_INPUT:
             msg = ("[ALERT]: the EXIT wasn't gived")
@@ -49,7 +55,7 @@ class   InvalidExit(Exception):
         super().__init__(msg)
 
 
-class   InvalidOutputFile(Exception):
+class   InvalidOutputFile(InvalidValues):
     def __init__(self, flag):
         if flag == NO_INPUT:
             msg = ("[ALERT]: the OUTPUTFILE wasn't gived")
@@ -58,7 +64,7 @@ class   InvalidOutputFile(Exception):
         super().__init__(msg)
 
 
-class   InvalidPerfect(Exception):
+class   InvalidPerfect(InvalidValues):
     def __init__(self, flag):
         if flag == NO_INPUT:
             msg = ("[ALERT]: the PERFECT wasn't gived")
@@ -67,7 +73,7 @@ class   InvalidPerfect(Exception):
         super().__init__(msg)
 
 
-class   InvalidSeed(Exception):
+class   InvalidSeed(InvalidValues):
     def __init__(self, flag):
         if flag == NO_INPUT:
             msg = ("[ALERT]: the SEED wasn't gived")

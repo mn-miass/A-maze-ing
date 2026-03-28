@@ -4,43 +4,6 @@ from error_file import *
 from define import *
 from file_checker import *
 
-"""list of function that should hundle different types"""
-def get_value_int(line):
-    try:
-        key, value = line.split("=")
-        value = int(value)
-        return ({key: value})
-    except ValueError:
-        pass
-
-def get_value_float(line):
-    try:
-        key, value = line.split("=")
-        value = int(value)
-        return ({key: value})
-    except ValueError:
-        pass
-
-
-def get_value_str(line):
-    try:
-        key, value = line.split("=")
-        value = int(value)
-        return ({key: value})
-    except ValueError:
-        pass
-
-
-def get_value_tuple(line):
-    try:
-        key, values = line.split("=")
-        value1, value2 = values.split(":")
-        value1 = int(value1)
-        value2 = int(value2)
-        return ({key: (value1, value2)})
-    except ValueError:
-        pass
-
 #need to check for invalid values error for first invalid value
 #need to check the data i need to read
 def parsing() -> list[Any]:
@@ -108,9 +71,7 @@ def parsing() -> list[Any]:
     except IndexError:
         print("No file was provided", file=sys.stderr)
     
-    except (InvalidSyntax, InvalidWidth, InvalidHeight, InvalidEntry, 
-            InvalidExit, InvalidOutputFile, InvalidPerfect, 
-            InvalidSeed)  as e:
+    except InvalidValues  as e:
         print(e, file=sys.stderr)
         exit()
 

@@ -75,5 +75,12 @@ def parsing() -> list[Any]:
         print(e, file=sys.stderr)
         exit()
 
+    except PermissionError:
+        print("Can't Read the File")
+        exit()
+
+    except IsADirectoryError:
+        print("\033[91m[ERROR]Can't have citionary as output file")
+        exit()
 
 parsing()

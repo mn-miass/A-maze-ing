@@ -25,6 +25,10 @@ class   InvalidWidth(InvalidValues):
             msg = ("[ALERT]: the WIDTH wasn't gived")
         elif flag == WRONG_INPUT:
             msg = ("[ERROR]: the WIDTH has wrong input")
+        elif flag == NEGATIVE_VALUE:
+            print("[ERROR]: the WIDTH is negative")
+        elif flag == ZERO_VALUE:
+             print("[ERROR]: the WIDTH is zero")
         super().__init__(msg)
 
 
@@ -34,6 +38,10 @@ class   InvalidHeight(InvalidValues):
             msg = ("[ALERT]: the HEIGHT wasn't gived")
         elif flag == WRONG_INPUT:
             msg = ("[ERROR]: the HEIGHT has wrong input")
+        elif flag == NEGATIVE_VALUE:
+            print("[ERROR]: the HEIGHT is negative")
+        elif flag == ZERO_VALUE:
+             print("[ERROR]: the HEIGHT is zero")
         super().__init__(msg)
 
 

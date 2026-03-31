@@ -1,15 +1,15 @@
 """THIS FILE IS FOR STYLING / COLORS"""
 
 class color_pallete():
-    DEFAULT = "\033[m"
+    RESET = "\033[39m"
     AMEDINA = "\033[38;2;212;14;14m"
     MAHDI = "\033[38;2;0;128;255m"
     ORANGE = "\033[38;2;255;165;0m"
-    GREEN = "\033[1;38;2;56;142;60m"
+    GREEN = "\033[38;2;56;142;60m"
 
 
 class style_pallete():
-    DEFAULT = "\033[0m"
+    RESET = "\033[0m"
     BOLD = "\033[1m"
     DIM = "\033[2m"
     ITALIC = "\033[3m"
@@ -18,4 +18,3 @@ class style_pallete():
     REVERSE = "\033[7m"
     STRIKETHROUGH = "\033[9m"
     OVERLINE = "\033[53m"
-

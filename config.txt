@@ -1,11 +1,1 @@
-#hundle permission error 
-#add colors to the OUTPUT
-#hundle impossible file name for output_file
-
-WIDTH=20
-HEIGHT=15
-ENTRY=0,0
-EXIT= 0,0
-OUTPUT_FILE=    /
-PERFECT=0
-
+WIDTH=

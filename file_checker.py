@@ -21,109 +21,112 @@ class FileChecker():
         width_count = 0
         perfect_count = 0
         for data in self.file_data:
-            try:
-                key, value = data.split("=", 1)
-                value = value.strip()
                 try:
-                    if key.upper() == "WIDTH":
-                        width_count += 1
-                        value = int(value)
-                        if value == 0:
-                            msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the WIDTH N° {width_count} have {value} 0 not allowed"
-                            raise InvalidWidth(msg)
-                        elif value < 0:
-                            msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the WIDTH N° {width_count} have {value} negative not allowed"
-                            raise InvalidWidth(msg)
-                        self.maze_data = self.maze_data | {key.upper(): value}
-                except InvalidWidth as e:
-                    display_msg(e.args[0])
+                    key, value = data.split("=", 1)
+                    value = value.strip()
+                    key = key.strip()
+                    try:
+                        if key.upper() == "WIDTH":
+                            width_count += 1
+                            value = int(value)
+                            if value == 0:
+                                msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the WIDTH N° {width_count} have {value} 0 not allowed"
+                                raise InvalidWidth(msg)
+                            elif value < 0:
+                                msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the WIDTH N° {width_count} have {value} negative not allowed"
+                                raise InvalidWidth(msg)
+                            self.maze_data = self.maze_data | {key.upper(): value}
+                    except InvalidWidth as e:
+                        display_msg(e.args[0])
+                    except ValueError:
+                        display_msg(f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the WIDTH N° {width_count} has wrong input: {value}")
+
+                    try:
+                        if key.upper() == "HEIGHT":
+                            height_count += 1
+                            value = int(value)
+                            if value == 0:
+                                msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the HEIGHT N° {height_count} has wrong input: {value} 0 not allowed"
+                                raise InvalidHeight(msg)
+                            if value < 0:
+                                f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the HEIGHT N° {height_count} has wrong input: {value} negative not allowed"
+                                raise InvalidHeight(msg)
+                            self.maze_data = self.maze_data | {key.upper(): value}
+                    except InvalidHeight as e:
+                        display_msg(e.args[0])
+                    except ValueError as e:
+                        display_msg(f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the HEIGHT N° {height_count} has wrong input: {value}")
+
+                    try:
+                        if key.upper() == "ENTRY":
+                            entry_count += 1
+                            value1, value2 = value.split(",")
+                            value1 = int(value1)
+                            value2 = int(value2)
+                            if value1 < 0:
+                                msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the ENTRY N° {entry_count} has wrong input: {value1} negative not allowed"
+                                raise InvalidEntry(msg)
+                            if value2 < 0:
+                                f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the ENTRY N° {entry_count} has wrong input: {value2} negative not allowed"
+                                raise InvalidEntry(msg)
+                    #need to check for impossible places
+                            self.maze_data = self.maze_data | {key.upper(): (value1, value2)}
+                    except InvalidEntry as e:
+                        display_msg(e.args[0])
+                    except ValueError:
+                        display_msg(f"{color_pallete.AMEDINA}{style_pallete.BOLD}[ERROR]: {color_pallete.RESET}the ENTRY N° {entry_count} has wrong input: {value}")
+
+                    try:
+                        if key.upper() == "EXIT":
+                            exit_count += 1
+                            value1, value2 = value.split(",")
+                            value1 = int(value1)
+                            value2 = int(value2)
+                            if value1 < 0:
+                                msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the EXIT N° {exit_count} has wrong input: {value1} negative not allowed"
+                                raise InvalidExit(msg)
+                            if value2 < 0:
+                                msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the EXIT N° {exit_count} has wrong input: {value1} negative not allowed"
+                                raise InvalidExit(msg)
+                            self.maze_data = self.maze_data | {key.upper(): (value1, value2)}
+                    except InvalidExit as e:
+                        display_msg(e.args[0])
+                    except ValueError:
+                        display_msg(f"{color_pallete.AMEDINA}{style_pallete.BOLD}[ERROR]: {color_pallete.RESET}the EXIT N° {entry_count} has wrong input: {value}")
+
+                    try:
+                        if key.upper() == "OUTPUT_FILE":
+                            value = value.strip()
+                            with open(value, "w") as file: #need to check this file not found error
+                                file.write("")
+                            self.maze_data = self.maze_data | {key.upper(): value}
+                    except PermissionError:
+                        msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the file: {value} cant be written to"
+                        display_msg("INVALID DATA")
+                    except IsADirectoryError:
+                        display_msg(f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the OUTPUT_FILE can't be a dictionary")
+                    except FileNotFoundError:
+                        display_msg(f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}OUTPUT_FILE not found")
+
+                    try:
+                        if key.upper() == "PERFECT":
+                            value = value.strip()
+                            if value.upper() not in PERFECT_VALUES:
+                                msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}The PERFECT value isnt valide : {value}"
+                                raise InvalidPerfect(msg)
+                            self.maze_data = self.maze_data | {key.upper(): value}
+                    except InvalidPerfect as e:
+                        display_msg(e.args[0])
+
+                    try:
+                        if key.upper() == "SEED":
+                            self.maze_data = self.maze_data | {key.upper(): value}
+                    except InvalidSeed:
+                        display_msg(f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: The seed value isnt valid")
                 except ValueError:
-                    display_msg(f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the WIDTH N° {width_count} has wrong input: {value}")
+                    pass
 
-                try:
-                    if key.upper() == "HEIGHT":
-                        height_count += 1
-                        value = int(value)
-                        if value == 0:
-                            msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the HEIGHT N° {height_count} has wrong input: {value} 0 not allowed"
-                            raise InvalidHeight(msg)
-                        if value < 0:
-                            f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the HEIGHT N° {height_count} has wrong input: {value} negative not allowed"
-                            raise InvalidHeight(msg)
-                        self.maze_data = self.maze_data | {key.upper(): value}
-                except InvalidHeight as e:
-                    display_msg(e.args[0])
-                except ValueError as e:
-                    display_msg(f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the HEIGHT N° {height_count} has wrong input: {value}")
 
-                try:
-                    if key.upper() == "ENTRY":
-                        entry_count += 1
-                        value1, value2 = value.split(",")
-                        value1 = int(value1)
-                        value2 = int(value2)
-                        if value1 < 0:
-                            msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the ENTRY N° {entry_count} has wrong input: {value1} negative not allowed"
-                            raise InvalidEntry(msg)
-                        if value2 < 0:
-                            f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the ENTRY N° {entry_count} has wrong input: {value2} negative not allowed"
-                            raise InvalidEntry(msg)
-                #need to check for impossible places
-                        self.maze_data = self.maze_data | {key.upper(): (value1, value2)}
-                except InvalidEntry as e:
-                    display_msg(e.args[0])
-                except ValueError:
-                    display_msg(f"{color_pallete.AMEDINA}{style_pallete.BOLD}[ERROR]: {color_pallete.RESET}the ENTRY N° {entry_count} has wrong input: {value}")
-
-                try:
-                    if key.upper() == "EXIT":
-                        exit_count += 1
-                        value1, value2 = value.split(",")
-                        value1 = int(value1)
-                        value2 = int(value2)
-                        if value1 < 0:
-                            msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the EXIT N° {exit_count} has wrong input: {value1} negative not allowed"
-                            raise InvalidExit(msg)
-                        if value2 < 0:
-                            msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the EXIT N° {exit_count} has wrong input: {value1} negative not allowed"
-                            raise InvalidExit(msg)
-                        self.maze_data = self.maze_data | {key.upper(): (value1, value2)}
-                except InvalidExit as e:
-                    display_msg(e.args[0])
-                except ValueError:
-                    display_msg(f"{color_pallete.AMEDINA}{style_pallete.BOLD}[ERROR]: {color_pallete.RESET}the EXIT N° {entry_count} has wrong input: {value}")
-
-                try:
-                    if key.upper() == "OUTPUT_FILE":
-                        value = value.strip()
-                        with open(value, "w") as file: #need to check this file not found error
-                            file.write("")
-                        self.maze_data = self.maze_data | {key.upper(): value}
-                except PermissionError:
-                    msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the file: {value} cant be written to"
-                    display_msg("INVALID DATA")
-                except IsADirectoryError:
-                    display_msg(f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}the OUTPUT_FILE can't be a dictionary")
-                except FileNotFoundError:
-                    display_msg(f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}OUTPUT_FILE not found")
-
-                try:
-                    if key.upper() == "PERFECT":
-                        value = value.strip()
-                        if value.upper() not in PERFECT_VALUES:
-                            msg = f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: {color_pallete.RESET}The PERFECT value isnt valide : {value}"
-                            raise InvalidPerfect(msg)
-                        self.maze_data = self.maze_data | {key.upper(): value}
-                except InvalidPerfect as e:
-                    display_msg(e.args[0])
-
-                try:
-                    if key.upper() == "SEED":
-                        self.maze_data = self.maze_data | {key.upper(): value}
-                except InvalidSeed:
-                    display_msg(f"{color_pallete.ORANGE}{style_pallete.BOLD}[WARNING]: The seed value isnt valid")
-            except Exception:
-                pass
 
     def open_file(self):
         line_number = 0
@@ -234,6 +237,7 @@ class FileChecker():
 file_test = FileChecker("config.txt")
 file_test.open_file()
 file_test.process_data()
-# print(file_test.file_data)
-# print(file_test.maze_data)
+
+
 file_test.process_dict()
+# print(file_test.maze_data)

@@ -5,8 +5,7 @@ from style import *
 #can add line and column later
 
 class   InvalidSyntax(Exception):
-    def __init__(self):
-        super().__init__("Invalid input was given")
+    pass
 
 
 class   NoInput(Exception):

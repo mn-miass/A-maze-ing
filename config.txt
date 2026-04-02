@@ -1,7 +1,13 @@
- WIDTH  = 10
- HEIGHT  = 10
- ENTRY  = 0,-0
- EXIT  = 9,9
- OUTPUT_FILE  = 0
- PERFECT  = 0
- SEEd = 0
+
+
+
+efdhd=
+dffjds=
+jfdsklfjds=
+jfdsodfopd=
+PERFECT=+0
+SEED=7
+    WIDTh   =   -a
+      HEIGHT   =   a
+ENTRY=0,9
+

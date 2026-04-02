@@ -1,5 +1,5 @@
 from define import *
-from style import *
+from tools.style import *
 
 """This file is for classes that will be raised as errors"""
 #can add line and column later

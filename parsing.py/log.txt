@@ -1,0 +1,31 @@
+
+======================LOGS=========================
+
+empty_lines: 6
+comments: 3
+nosign: 5
+
+======================COMMENTS=========================
+
+HEIGHT
+adlskhd=
+fhkdfsd
+
+=====================INVALID LINES======================
+
+gshdj
+jsfdlskfdls
+fjkldjfk;
+dfjklsdfjklsd
+djsklfds
+
+======================INVALID DATA=======================
+
+
+=======================MISSING========================
+
+HEIGHT is missing
+ENTRY is missing
+EXIT is missing
+OUTPUT_FILE is missing
+PERFECT is missing

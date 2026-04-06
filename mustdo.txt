@@ -1,1 +1,1 @@
-add a file log and decide wher to print the output from the config file
+i should take the 

@@ -1,0 +1,32 @@
+
+======================LOGS=========================
+
+empty_lines: 7
+comments: 2
+nosign: 2
+
+======================COMMENTS=========================
+
+klmdd
+dlskdak
+
+=====================INVALID LINES======================
+
+jdsjsa
+0
+
+======================INVALID DATA=======================
+
+SDHKLD
+
+=======================INVALID VALUE========================
+
+
+=======================MISSING========================
+
+WIDTH is missing
+HEIGHT is missing
+ENTRY is missing
+EXIT is missing
+OUTPUT_FILE is missing
+PERFECT is missing

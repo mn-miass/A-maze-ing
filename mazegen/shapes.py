@@ -35,11 +35,11 @@ class Shapes:
     @staticmethod
     def _shape_3() -> list[list[bool]]:
         return [
-            [True,  True,  False],
+            [True,  True,  True],
             [False, False, True ],
-            [False, True,  False],
+            [False, True,  True],
             [False, False, True ],
-            [True,  True,  False],
+            [True,  True,  True],
         ]
 
     @staticmethod
@@ -57,19 +57,19 @@ class Shapes:
         return [
             [True,  True,  True ],
             [True,  False, False],
-            [True,  True,  False],
+            [True,  True,  True],
             [False, False, True ],
-            [True,  True,  False],
+            [True,  True,  True],
         ]
 
     @staticmethod
     def _shape_6() -> list[list[bool]]:
         return [
-            [False, True,  True ],
+            [True, True,  True ],
             [True,  False, False],
-            [True,  True,  False],
+            [True,  True,  True],
             [True,  False, True ],
-            [False, True,  False],
+            [True, True,  True],
         ]
 
     @staticmethod
@@ -85,11 +85,11 @@ class Shapes:
     @staticmethod
     def _shape_8() -> list[list[bool]]:
         return [
-            [False, True,  False],
+            [True, True,  True],
             [True,  False, True ],
-            [False, True,  False],
+            [True, True,  True],
             [True,  False, True ],
-            [False, True,  False],
+            [True, True,  True],
         ]
 
     @staticmethod

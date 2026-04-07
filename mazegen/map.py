@@ -30,33 +30,8 @@ class MapGenerator():
             grid.append(row)
         return grid
 
-    def _scale(self, grid):
-        size = min(self.width, self.height)
-        ratio = 0
-        if size < 5:
-            ratio = 2
-        elif size < 10:
-            ratio = 3
-        else:
-            ratio = 20
-
-        scale = min((self.height) // (len(grid) * ratio), (self.width) // (len(grid[0]) * ratio))
-        print(scale)
-        scale = max(1, scale)
-
-        scaled_grid = []
-        for i in range(len(grid)):
-            scaled_row = []
-            for j in range(len(grid[i])):
-                for k in range(scale):
-                    scaled_row.append(grid[i][j])
-            for k in range(scale):
-                scaled_grid.append(scaled_row)
-        return scaled_grid
-
     def _generate_msg(self):
         msg = self._get_number()
-        msg = self._scale(msg)
         start_row = (self.height - len(msg)) // 2
         start_col = (self.width - len(msg[0])) // 2
         for i in range(len(msg)):
@@ -126,11 +101,15 @@ class MapGenerator():
         return added_block
 
     def print_map(self):
-        grid = self.bin
-        for i in range(len(grid)):
-            for j in range(len(grid[i])):
-                print(f"{grid[i][j]} ", end="")
-            print()
+            grid = self.bin
+            for i in range(len(grid)):
+                for j in range(len(grid[i])):
+                    if grid[i][j] == 1:
+                        print("#" * 2, end="")
+                    else:
+                        print(" " * 2, end="")
+                    # print(f"{grid[i][j]} ", end="")
+                print()
 
 
 test = MapGenerator(30, 50)

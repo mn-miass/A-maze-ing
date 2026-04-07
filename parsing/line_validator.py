@@ -1,5 +1,3 @@
-
-
 class LineValidator():
     def __init__(self, lines):
         self.valid_lines = lines

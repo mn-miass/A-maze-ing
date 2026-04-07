@@ -1,11 +1,22 @@
 LOG_FILE=log.txt
 WIDTH=0
 
-
-
+fk;dsfs
+dsjfklds
+kfj;dsfs
+#dlskdak
+#adjskldj
 
 #klmdd
-#dlskdak
+#dlskdakdfds
+'fdnsfldsfm
+#adsjdkas;
+
+
+
+
+
+
 jdsjsa
 
 

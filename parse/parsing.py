@@ -1,7 +1,8 @@
-from line_validator import LineValidator
-from file_validator import FileValidator
-from key_value_validator import KeyValueValidator
-from log_file import LogFile
+from .line_validator import LineValidator
+from .file_validator import FileValidator
+from .key_value_validator import KeyValueValidator
+from .log_file import LogFile
+
 #a small errro in missing need to be hundle even valid variable was given it still show all as missing
 #logfile not working for now need to be checked
 #still some error with the log file overall almost is don
@@ -35,14 +36,14 @@ def display_missing(missing_value):
 
 def parsing(file_name):
     file = FileValidator(file_name)
+    lines = LineValidator(file.data)
+    valid_data = KeyValueValidator(lines.valid_lines)
+
     if not file.is_validate:
         print(file.errors[0])
         return None
 
-    lines = LineValidator(file.data)
-    valid_data = KeyValueValidator(lines.valid_lines)
-
-    if 'LOG_FILE' in valid_data.valid_dict:
+    elif 'LOG_FILE' in valid_data.valid_dict:
         LogFile(valid_data.valid_dict["LOG_FILE"],
                 lines.comments,
                 lines.invalid_lines_no_sign,
@@ -51,7 +52,7 @@ def parsing(file_name):
                 valid_data.non_valid_value,
                 valid_data.missing_keys)
 
-    if valid_data.missing_keys:
+    if valid_data.missing_keys and 'LOG_FILE' not in valid_data.valid_dict:
         display(valid_data.non_valid_value)
         display_missing(valid_data.missing_keys)
         return None

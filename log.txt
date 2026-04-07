@@ -1,17 +1,26 @@
 
 ======================LOGS=========================
 
-empty_lines: 7
-comments: 2
-nosign: 2
+empty_lines: 10
+comments: 5
+nosign: 8
 
 ======================COMMENTS=========================
 
-klmdd
 dlskdak
+adjskldj
+klmdd
+dlskdakdfds
+adsjdkas;
 
 =====================INVALID LINES======================
 
+fk;dsfs
+dsjfklds
+kfj;dsfs
+dfl;fks
+fklsfs
+'fdnsfldsfm
 jdsjsa
 0
 
@@ -24,9 +33,3 @@ SDHKLD
 
 =======================MISSING========================
 
-WIDTH is missing
-HEIGHT is missing
-ENTRY is missing
-EXIT is missing
-OUTPUT_FILE is missing
-PERFECT is missing

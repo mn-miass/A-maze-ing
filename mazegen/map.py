@@ -1,24 +1,27 @@
-from cells import CellGenerator
-from shapes import Shapes
+from .shapes import Shapes
+from .hex_bin import bin_to_decimal, decimal_to_hexa
+# cells not needed proparly
 
 class MapGenerator():
-    def __init__(self, height, width, msg=99):
+    def __init__(self, height, width, msg=42):
         self.height = height
         self.width = width
         self.msg = msg
-        self.map = self._generate_map(height, width)
+        # self.map = self._generate_map(height, width)
         self.bin = self._generate_bin(height, width)
         self._generate_msg()
+        self.dec = bin_to_decimal(self.bin)
+        self.hex = decimal_to_hexa(self.dec)
 
-    def _generate_map(self, height, width):
-        grid = []
-        for i in range(height):
-            row = []
-            for j in range(width):
-                cell = CellGenerator(i, j, height, width)
-                row.append(cell)
-            grid.append(row)
-        return grid
+    # def _generate_map(self, height, width):
+    #     grid = []
+    #     for i in range(height):
+    #         row = []
+    #         for j in range(width):
+    #             cell = CellGenerator(i, j, height, width)
+    #             row.append(cell)
+    #         grid.append(row)
+    #     return grid
 
     def _generate_bin(self, height, width):
         grid = []
@@ -100,6 +103,13 @@ class MapGenerator():
             added_block.append(row_block)
         return added_block
 
+    def load_output(self, f):
+        for i in range(len(self.hex)):
+            for j in range(len(self.hex[i])):
+                print(self.hex[i][j], file=f, end="")
+            print("", file=f)
+
+    #just function for check will be deleted later
     def print_map(self):
             grid = self.bin
             for i in range(len(grid)):
@@ -111,6 +121,23 @@ class MapGenerator():
                     # print(f"{grid[i][j]} ", end="")
                 print()
 
+    def print_d(self):
+        grid = self.map
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                if grid[i][j] <= 9:
+                    print(f"{grid[i][j]}  ", end="")
+                else:
+                    print(f"{grid[i][j]} ", end="")
 
-test = MapGenerator(30, 50)
-test.print_map()
+            print()
+
+    def print_h(self, grid):
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                print(f"{grid[i][j]} ", end="")
+            print()
+
+# test = MapGenerator(11, 15)
+# test.print_h(decimal_to_hexa(test.map))
+# test.print_map()

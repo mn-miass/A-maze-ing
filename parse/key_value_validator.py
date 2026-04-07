@@ -1,4 +1,4 @@
-from file_validator import FileValidator
+from .file_validator import FileValidator
 
 
 class KeyValueValidator():

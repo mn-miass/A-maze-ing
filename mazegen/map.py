@@ -3,15 +3,16 @@ from .hex_bin import bin_to_decimal, decimal_to_hexa
 # cells not needed proparly
 
 class MapGenerator():
-    def __init__(self, height, width, msg=42):
+    def __init__(self, height, width, msg=0):
         self.height = height
         self.width = width
         self.msg = msg
         # self.map = self._generate_map(height, width)
-        self.bin = self._generate_bin(height, width)
+        self.flags = self._generate_flags(height, width)
         self._generate_msg()
-        self.dec = bin_to_decimal(self.bin)
+        self.dec = bin_to_decimal(self.flags)
         self.hex = decimal_to_hexa(self.dec)
+
 
     # def _generate_map(self, height, width):
     #     grid = []
@@ -23,7 +24,8 @@ class MapGenerator():
     #         grid.append(row)
     #     return grid
 
-    def _generate_bin(self, height, width):
+
+    def _generate_flags(self, height, width):
         grid = []
         for i in range(height):
             row = []
@@ -111,7 +113,7 @@ class MapGenerator():
 
     #just function for check will be deleted later
     def print_map(self):
-            grid = self.bin
+            grid = self.flags
             for i in range(len(grid)):
                 for j in range(len(grid[i])):
                     if grid[i][j] == 1:
@@ -122,7 +124,7 @@ class MapGenerator():
                 print()
 
     def print_d(self):
-        grid = self.map
+        grid = self.dec
         for i in range(len(grid)):
             for j in range(len(grid[i])):
                 if grid[i][j] <= 9:

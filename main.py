@@ -18,5 +18,5 @@ if __name__ == "__main__":
     map = mazegen.MapGenerator(data["HEIGHT"], data["WIDTH"])
     with open(data["OUTPUT_FILE"], "w") as file:
         map.load_output(file)
-
+    map.print_d()
     

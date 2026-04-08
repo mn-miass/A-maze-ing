@@ -5,13 +5,13 @@ def bin_to_decimal(block):
         for j in range(len(block[i])):
             value = 15
             if block[i][j]:
-                if i == 0 or not block[i - 1][j]:
+                if i != 0 and block[i - 1][j]:
                     value -= 1
-                if i == len(block) - 1 or not block[i + 1][j]:
+                if i != len(block) - 1 and block[i + 1][j]:
                     value -= 4
-                if j == 0 or not block[i][j - 1]:
+                if j != 0 and block[i][j - 1]:
                     value -= 8
-                if j == len(block[i]) - 1 or not block[i][j + 1]:
+                if j != len(block[i]) and block[i][j + 1]:
                     value -= 2
             hex_row.append(value)
         hexa_block.append(hex_row)

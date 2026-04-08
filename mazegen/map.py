@@ -10,7 +10,7 @@ WEST = 8
 
 
 class MapGenerator():
-    def __init__(self, height, width, msg=1):
+    def __init__(self, height, width, msg=9):
         self.height = height
         self.width = width
         self.msg = msg
@@ -149,19 +149,78 @@ class MapGenerator():
             print()
 
     def print_maze_walls(self):
-            print("+" + "---+" * self.width)
-            for x in range(self.height):
-                row_str = "|"
-                bottom_str = "+"
-                for y in range(self.width):
-                    val = self.dec[x][y]
+        NORTH, EAST, SOUTH, WEST = 1, 2, 4, 8
+        
+        # 1. TOP BOUNDARY
+        # We look at the top row (x=0) and draw a wall if NORTH is closed (0)
+        top_line = "+"
+        for y in range(self.width):
+            if not (self.dec[0][y] & NORTH):
+                top_line += "---+"
+            else:
+                top_line += "   +"
+        print(top_line)
+        
+        for x in range(self.height):
+            # 2. LEFT BOUNDARY
+            # Start each row by checking if the first cell's WEST is closed
+            row_str = "|" if (self.dec[x][0] & WEST) else " "
+            bottom_str = "+"
+            
+            for y in range(self.width):
+                val = self.dec[x][y]
 
-                    # Eastern wall check
-                    row_str += "   |" if (val & EAST) else "    "
-                    # # Southern wall check
-                    bottom_str += "---+" if (val & SOUTH) else "   +"
-                print(row_str)
-                print(bottom_str)
+                # Space inside the cell
+                row_str += "   " 
+
+                # 3. EAST WALLS (Right side of each cell)
+                if (val & EAST):
+                    row_str += "|"
+                else:
+                    row_str += " "
+                
+                # 4. SOUTH WALLS (Bottom of each cell)
+                if (val & SOUTH):
+                    bottom_str += "---+"
+                else:
+                    bottom_str += "   +"
+                    
+            print(row_str)
+            print(bottom_str)
+
+
+    def print_maze_from_flags(self):
+        grid = self.flags
+        rows = self.height
+        cols = self.width
+
+        # 1. Draw the top boundary
+        top = "+"
+        for y in range(cols):
+            # Only open the ceiling if the cell is 1 (optional, usually top is closed)
+            top += "---+"
+        print(top)
+
+        for x in range(rows):
+            # 2. Start row with a wall
+            row_str = "|"
+            bottom_str = "+"
+
+            for y in range(cols):
+                # Check East: If current is 1 AND neighbor to the right is 1, open it
+                if y < cols - 1 and grid[x][y] == 1 and grid[x][y+1] == 1:
+                    row_str += "    " # Space + no wall
+                else:
+                    row_str += "   |" # Space + wall
+
+                # Check South: If current is 1 AND neighbor below is 1, open it
+                if x < rows - 1 and grid[x][y] == 1 and grid[x+1][y] == 1:
+                    bottom_str += "   +" # No wall + joint
+                else:
+                    bottom_str += "---+" # Wall + joint
+
+            print(row_str)
+            print(bottom_str)
 
 # test = MapGenerator(11, 15)
 # test.print_h(decimal_to_hexa(test.map))

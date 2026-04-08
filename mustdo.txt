@@ -4,3 +4,4 @@ must do entery exit out of space
 must print entry exit in the log file 
 must do the maze
 must do the maze solver
+add type check for the maze

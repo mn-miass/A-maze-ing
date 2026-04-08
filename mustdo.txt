@@ -1,1 +1,6 @@
-i should take the 
+must do the trl + c error
+must do teh entry exit same place
+must do entery exit out of space
+must print entry exit in the log file 
+must do the maze
+must do the maze solver

@@ -1,6 +1,7 @@
 import sys
 import mazegen
 import parse
+import mazegen
 
 if __name__ == "__main__":
     if len(sys.argv) == 1:
@@ -18,5 +19,6 @@ if __name__ == "__main__":
     map = mazegen.MapGenerator(data["HEIGHT"], data["WIDTH"])
     with open(data["OUTPUT_FILE"], "w") as file:
         map.load_output(file)
-    map.print_d()
+    map = mazegen.MazeGenerator(map.hex, map.flags, map.dec, data["ENTRY"], data["EXIT"], map.height, map.width)
+    
     

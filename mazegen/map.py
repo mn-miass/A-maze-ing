@@ -3,7 +3,7 @@ from .hex_bin import bin_to_decimal, decimal_to_hexa
 # cells not needed proparly
 
 class MapGenerator():
-    def __init__(self, height, width, msg=0):
+    def __init__(self, height, width, msg=22):
         self.height = height
         self.width = width
         self.msg = msg
@@ -41,7 +41,7 @@ class MapGenerator():
         start_col = (self.width - len(msg[0])) // 2
         for i in range(len(msg)):
             for j in range(len(msg[0])):
-                self.bin[start_row + i][start_col + j] = int(msg[i][j])
+                self.flags[start_row + i][start_col + j] = int(msg[i][j])
 
     def _get_number(self):
         tens = self.msg // 10

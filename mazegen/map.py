@@ -2,8 +2,15 @@ from .shapes import Shapes
 from .hex_bin import bin_to_decimal, decimal_to_hexa
 # cells not needed proparly
 
+
+NORTH = 1
+EAST = 2
+SOUTH = 4
+WEST = 8
+
+
 class MapGenerator():
-    def __init__(self, height, width, msg=22):
+    def __init__(self, height, width, msg=1):
         self.height = height
         self.width = width
         self.msg = msg
@@ -134,11 +141,27 @@ class MapGenerator():
 
             print()
 
-    def print_h(self, grid):
+    def print_h(self):
+        grid = self.flags
         for i in range(len(grid)):
             for j in range(len(grid[i])):
                 print(f"{grid[i][j]} ", end="")
             print()
+
+    def print_maze_walls(self):
+            print("+" + "---+" * self.width)
+            for x in range(self.height):
+                row_str = "|"
+                bottom_str = "+"
+                for y in range(self.width):
+                    val = self.dec[x][y]
+
+                    # Eastern wall check
+                    row_str += "   |" if (val & EAST) else "    "
+                    # # Southern wall check
+                    bottom_str += "---+" if (val & SOUTH) else "   +"
+                print(row_str)
+                print(bottom_str)
 
 # test = MapGenerator(11, 15)
 # test.print_h(decimal_to_hexa(test.map))

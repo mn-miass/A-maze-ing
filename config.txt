@@ -1,9 +1,9 @@
 LOG_FILE=log.txt
-WIDTH=10
-Height=10
+WIDTH=15
+Height=15
 output_file = out.txt
 ENTRY=0,0
-EXIT=1,1
+EXIT=10,10
 PERFECT=True
 
 fk;dsfs

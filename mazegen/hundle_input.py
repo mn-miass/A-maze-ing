@@ -31,6 +31,7 @@ class HundleInput():
         self._validate_perfect()
         self._validate_seed()
         self._validate_msg()
+        self._validate_entry_exit()
         self._check_all()
 
     def _upper_all(self):
@@ -40,18 +41,22 @@ class HundleInput():
     def _validate_width(self):
         try :
             self.width = int(self.data["WIDTH"])
+            if self.width < 5:
+                self.width = None
         except (KeyError, ValueError):
             pass
 
     def _validate_height(self):
         try :
             self.height = int(self.data["HEIGHT"])
+            if self.height < 5:
+                self.height = None
         except (KeyError, ValueError):
             pass
 
     def _validate_entry(self):
         try :
-            value1, value2 = self.data["ENTRY"].split(",", 1)
+            value1, value2 = self.data["ENTRY"]
             value1 = int(value1)
             value2 = int(value2)
             self.entry = (value1, value2)
@@ -60,7 +65,7 @@ class HundleInput():
 
     def _validate_exit(self):
         try :
-            value1, value2 = self.data["EXIT"].split(",", 1)
+            value1, value2 = self.data["EXIT"]
             value1 = int(value1)
             value2 = int(value2)
             self.exit = (value1, value2)
@@ -80,6 +85,17 @@ class HundleInput():
         except (KeyError, ValueError):
             pass
 
+    def _validate_entry_exit(self):
+        try:
+            print(self.exit)
+            x_e, y_e = self.exit
+            x_s, y_s = self.entry
+            if x_e == x_s and y_e == y_s:
+                self.exit = None
+                self.entry = None
+        except (ValueError, TypeError):
+            pass
+
     def _validate_seed(self):
         try:
             self.seed = int(self.data["SEED"])
@@ -97,6 +113,8 @@ class HundleInput():
     def _validate_msg(self):
         try:
             self.msg = int(self.data["MSG"])
+            if self.msg > 99 or self.msg < 0:
+                self.msg = 42
         except (KeyError, ValueError):
             self.msg = 42
 

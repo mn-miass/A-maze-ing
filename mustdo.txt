@@ -9,4 +9,6 @@ need to add msg for number inside the maze
 need to change perfect in parsing package
 change the name of maze generator to the main class 
 need to add check for entry == exit 
-need to add check for 
+need to add check for entry and exit not in the msg block
+need to check x and y coordinations
+re do the grid hex and change it according to the new values

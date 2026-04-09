@@ -65,7 +65,7 @@ class KeyValueValidator():
     def _check_width_height(self, key, value):
         try:
             value = int(value)
-            if value < 1:
+            if value < 5:
                 self.non_valid_value = self.non_valid_value | {key: value}
                 del self.valid_dict[key]
             else:
@@ -108,6 +108,18 @@ class KeyValueValidator():
         except ValueError:
             self.non_valid_value = self.non_valid_value | {key: value}
             del self.valid_dict[key]
+
+    def _check_entry_equal_exit(self):
+        try:
+            x_e, y_e = self.valid_dict["EXIT"]
+            x_s, y_s = self.valid_dict["ENTRY"]
+            if x_e == x_s and y_e == y_s:
+                self.non_valid_value = self.non_valid_value | {"EXIT": (x_e, y_e)}
+                self.non_valid_value = self.non_valid_value | {"ENTRY": (x_s, y_s)}
+                del self.valid_dict["ENTRY"]
+                del self.valid_dict["EXIT"]
+        except (KeyError, ValueError):
+            pass
 
     def _check_all(self):
         for element in KeyValueValidator.MANDATORY_KEYS:

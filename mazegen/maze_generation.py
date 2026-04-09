@@ -19,22 +19,26 @@ class MazeGenerator():
             exit(0)
         print(self.data.data_list)
         map = MapGenerator(self.data.height, self.data.width, self.data.msg)
-        print(self.data.msg)
         self.hex_map = map.hex
         self.flags_map = map.flags
         self.dec_map = map.dec
-        map.print_maze_from_flags()
-        # maze = HuntAndKill(self)
+        maze = HuntAndKill(map.hex, map.flags, map.dec, self.data.height, self.data.width, self.data.seed)
+        self.flags_map = maze.grid_flags
+        self.hex_map = decimal_to_hexa(maze.grid_dec)
+        self.dec_map = maze.grid_dec
+        maze.print_maze_walls()
+
 
 
 test_data = {
     "width": "20",
-    "HEIGHT": 15,
+    "HEIGHT": 20,
     "entry": "0,1",
     "EXIT": "19,14",
     "output_file": "maze_result.txt",
     "PERFECT": "true",
-    "seed": "1337",
-    "msg": 10
+    "seed": 12,
+    "msg": 67
+
 }
 maze = MazeGenerator(test_data)

@@ -7,19 +7,19 @@ SOUTH = 4
 WEST = 8
 
 class HuntAndKill():
-    def __init__(self, grid_hex, grid_flags, grid_dec, start, end, height, width, seed=15):
+    def __init__(self, grid_hex, grid_flags, grid_dec, height, width, seed=15):
         self.grid_hex = grid_hex
         self.grid_flags = grid_flags
         self.grid_dec = grid_dec
-        self.start = start
-        self.end = end
+        # self.start = start
+        # self.end = end
         self.height = height
         self.width = width
         self.rrs = random.Random(seed)
         self._generate()
 
     def _generate(self):
-        x_s, y_s = self.start
+        # x_s, y_s = self.start
 
         current_x = 0
         current_y = 0
@@ -30,7 +30,7 @@ class HuntAndKill():
             if neightbour:
                 next_x, next_y, wall_c, wall_n = self._random_neighbour(neightbour)
                 self._carve((current_x, current_y), (next_x, next_y),
-                            wall_n, wall_c)
+                            wall_c, wall_n)
                 current_x = next_x
                 current_y = next_y
                 self.grid_flags[current_x][current_y] = 2
@@ -70,11 +70,11 @@ class HuntAndKill():
         if x > 0 and self.grid_flags[x - 1][y] == 0:
             valid.append((x-1,y,NORTH, SOUTH))
         if y > 0 and self.grid_flags[x][y-1] == 0:
-            valid.append((x,y-1,EAST, WEST))
+            valid.append((x,y-1,WEST, EAST))
         if x < self.height - 1 and self.grid_flags[x+1][y] == 0:
             valid.append((x+1,y,SOUTH, NORTH))
         if y < self.width - 1 and self.grid_flags[x][y+1] == 0:
-            valid.append((x,y+1,WEST, EAST))
+            valid.append((x,y+1,EAST, WEST))
         return valid
 
     def _visited_neighbour(self, cell):
@@ -110,7 +110,10 @@ class HuntAndKill():
                 for y in range(self.width):
                     val = self.grid_dec[x][y]
                     # Eastern wall check
-                    row_str += "   |" if (val & EAST) else "    "
+                    if y < self.width - 1 and self.grid_flags[x][y] == 1:
+                        row_str += "\033[42m" + "   " + "\033[0m" +"|"  if (val & EAST) else "\033[42m" + "    " + "\033[0m"
+                    else:
+                        row_str += "   |"  if (val & EAST) else "    "
                     # Southern wall check
                     bottom_str += "---+" if (val & SOUTH) else "   +"
                 print(row_str)

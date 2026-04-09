@@ -1,2 +1,2 @@
 from .map import MapGenerator
-from .maze_generator import MazeGenerator
+from .hunt_and_kill import HuntAndKill

@@ -7,3 +7,6 @@ must do the maze solver
 add type check for the maze
 need to add msg for number inside the maze 
 need to change perfect in parsing package
+change the name of maze generator to the main class 
+need to add check for entry == exit 
+need to add check for 

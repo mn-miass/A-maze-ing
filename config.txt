@@ -1,6 +1,6 @@
 LOG_FILE=log.txt
 WIDTH=15
-Height=15
+
 output_file = out.txt
 ENTRY=0,0
 EXIT=10,10
@@ -29,3 +29,4 @@ jdsjsa
 
 sdhkld=90
 0
+Height=15

@@ -6,7 +6,7 @@ EAST = 2
 SOUTH = 4
 WEST = 8
 
-class MazeGenerator():
+class HuntAndKill():
     def __init__(self, grid_hex, grid_flags, grid_dec, start, end, height, width, seed=15):
         self.grid_hex = grid_hex
         self.grid_flags = grid_flags

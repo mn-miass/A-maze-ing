@@ -1,5 +1,4 @@
 import sys
-import mazegen
 import parse
 import mazegen
 
@@ -16,12 +15,8 @@ if __name__ == "__main__":
     #check if there is somthing missing
 
     #print to the output file the map as hex
-    map = mazegen.MapGenerator(data["HEIGHT"], data["WIDTH"])
+    # map = mazegen.MapGenerator(data)
     # map.print_maze_walls()
     # map.print_maze_from_flags()
     # map.print_maze_walls()
-    with open(data["OUTPUT_FILE"], "w") as file:
-        map.load_output(file)
-    map = mazegen.MazeGenerator(map.hex, map.flags, map.dec, data["ENTRY"], data["EXIT"], map.height, map.width)
-    map.print_maze_walls()
-    
+

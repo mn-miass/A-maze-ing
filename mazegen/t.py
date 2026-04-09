@@ -1,4 +1,4 @@
-from maze_generator import MapGenerator, print_visited, MazeGenerator
+from mazegen.hunt_and_kill import MapGenerator, print_visited, MazeGenerator
 
 
 

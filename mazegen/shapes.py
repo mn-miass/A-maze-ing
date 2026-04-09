@@ -76,7 +76,7 @@ class Shapes:
     def _shape_7() -> list[list[bool]]:
         return [
             [True,  True,  True ],
-            [True, False, True ],
+            [False, False, True ],
             [False, False,  True],
             [False, False,  True],
             [False, False,  True],

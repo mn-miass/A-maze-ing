@@ -7,7 +7,7 @@ SOUTH = 4
 WEST = 8
 
 class MazeGenerator():
-    def __init__(self, grid_hex, grid_flags, grid_dec, start, end, height, width, seed=42):
+    def __init__(self, grid_hex, grid_flags, grid_dec, start, end, height, width, seed=15):
         self.grid_hex = grid_hex
         self.grid_flags = grid_flags
         self.grid_dec = grid_dec
@@ -70,11 +70,11 @@ class MazeGenerator():
         if x > 0 and self.grid_flags[x - 1][y] == 0:
             valid.append((x-1,y,NORTH, SOUTH))
         if y > 0 and self.grid_flags[x][y-1] == 0:
-            valid.append((x,y-1,WEST, EAST))
+            valid.append((x,y-1,EAST, WEST))
         if x < self.height - 1 and self.grid_flags[x+1][y] == 0:
             valid.append((x+1,y,SOUTH, NORTH))
         if y < self.width - 1 and self.grid_flags[x][y+1] == 0:
-            valid.append((x,y+1,EAST, WEST))
+            valid.append((x,y+1,WEST, EAST))
         return valid
 
     def _visited_neighbour(self, cell):

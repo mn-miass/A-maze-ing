@@ -10,7 +10,7 @@ WEST = 8
 
 
 class MapGenerator():
-    def __init__(self, height, width, msg=9):
+    def __init__(self, height, width, msg=17):
         self.height = height
         self.width = width
         self.msg = msg

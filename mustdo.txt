@@ -5,3 +5,5 @@ must print entry exit in the log file
 must do the maze
 must do the maze solver
 add type check for the maze
+need to add msg for number inside the maze 
+need to change perfect in parsing package

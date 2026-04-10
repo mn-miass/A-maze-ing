@@ -2,7 +2,30 @@ from .line_validator import LineValidator
 from .file_validator import FileValidator
 from .key_value_validator import KeyValueValidator
 from .log_file import LogFile
+"""
+parsing:
+    validate the given file by checking if:
+        the given name is not a directory
+        the given name have the right permission
+        no binary data was given
+        the file really exist
+            if any error happen the program will exist
+            else it will read the file (if the permmision is read) and store it in data
 
+    validate the lines:
+        remove the empty lines
+        remove the comments(even for the once in the middle of the line)
+        remove the non vlid lines that dont contain = sign
+
+    validat values:
+        check for invalid keys
+        check for invalid values 
+        check for missing data
+
+    e
+    Returns:
+        _type_: _description_
+"""
 #a small errro in missing need to be hundle even valid variable was given it still show all as missing
 #logfile not working for now need to be checked
 #still some error with the log file overall almost is don

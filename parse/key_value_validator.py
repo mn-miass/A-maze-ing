@@ -11,13 +11,6 @@ class KeyValueValidator():
                   "SEED",
                   "LOG_FILE"]
 
-    PERFECT_VALUES = ["TRUE",
-                      "FALSE",
-                      "0",
-                      "1",
-                      "+0",
-                      "-0"]
-
     MANDATORY_KEYS = ["WIDTH",
                       "HEIGHT",
                       "ENTRY",
@@ -90,10 +83,16 @@ class KeyValueValidator():
 
     def _check_perfect(self, key, value):
         value_tmp = value.upper()
-        if value_tmp in KeyValueValidator.PERFECT_VALUES:
+        if value_tmp == "True" or value_tmp == "False":
             return
-        self.non_valid_value = self.non_valid_value | {key: value}
-        del self.valid_dict[key]
+        if isinstance(value_tmp, int):
+            if value_tmp == 0:
+                self.valid_dict[key] = "False"
+            elif value_tmp == 1:
+                self.valid_dict[key] = "True"
+            else:
+                self.non_valid_value = self.non_valid_value | {key: value}
+                del self.valid_dict[key]
 
     def _check_output_file_log_file(self, key, value):
         file = FileValidator(self.valid_dict[key], "w")

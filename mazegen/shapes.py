@@ -1,103 +1,100 @@
 class Shapes:
-    height = 5
-    width = 3
-
     @staticmethod
-    def _shape_0() -> list[list[bool]]:
+    def _shape_0() -> list[list[int]]:
         return [
-            [True,  True,  True ],
-            [True,  False, True ],
-            [True,  False, True ],
-            [True,  False, True ],
-            [True,  True,  True ],
+            [1,  1,  1],
+            [1,  10, 1],
+            [1,  10, 1],
+            [1,  10, 1],
+            [1,  1,  1],
         ]
 
     @staticmethod
-    def _shape_1() -> list[list[bool]]:
+    def _shape_1() -> list[list[int]]:
         return [
-            [False, True,  False],
-            [True,  True,  False],
-            [False, True,  False],
-            [False, True,  False],
-            [True,  True,  True ],
+            [0, 1,  0],
+            [1,  1,  0],
+            [0, 1,  0],
+            [0, 1,  0],
+            [1,  1,  1],
         ]
 
     @staticmethod
-    def _shape_2() -> list[list[bool]]:
+    def _shape_2() -> list[list[int]]:
         return [
-            [True,  True,  True],
-            [False, False, True ],
-            [True, True,  True],
-            [True,  False, False],
-            [True,  True,  True ],
+            [1,  1,  1],
+            [0, 0, 1],
+            [1, 1,  1],
+            [1,  0, 0],
+            [1,  1,  1],
         ]
 
     @staticmethod
-    def _shape_3() -> list[list[bool]]:
+    def _shape_3() -> list[list[int]]:
         return [
-            [True,  True,  True],
-            [False, False, True ],
-            [True, True,  True],
-            [False, False, True ],
-            [True,  True,  True],
+            [1,  1,  1],
+            [0, 0, 1],
+            [1, 1,  1],
+            [0, 0, 1],
+            [1,  1,  1],
         ]
 
     @staticmethod
-    def _shape_4() -> list[list[bool]]:
+    def _shape_4() -> list[list[int]]:
         return [
-            [True,  False, True ],
-            [True,  False, True ],
-            [True,  True,  True ],
-            [False, False, True ],
-            [False, False, True ],
+            [1,  0, 1],
+            [1,  0, 1],
+            [1,  1,  1],
+            [0, 0, 1],
+            [0, 0, 1],
         ]
 
     @staticmethod
-    def _shape_5() -> list[list[bool]]:
+    def _shape_5() -> list[list[int]]:
         return [
-            [True,  True,  True ],
-            [True,  False, False],
-            [True,  True,  True],
-            [False, False, True ],
-            [True,  True,  True],
+            [1,  1,  1],
+            [1,  0, 0],
+            [1,  1,  1],
+            [0, 0, 1],
+            [1,  1,  1],
         ]
 
     @staticmethod
-    def _shape_6() -> list[list[bool]]:
+    def _shape_6() -> list[list[int]]:
         return [
-            [True, True,  True ],
-            [True,  False, False],
-            [True,  True,  True],
-            [True,  False, True ],
-            [True, True,  True],
+            [1, 1,  1],
+            [1,  0, 0],
+            [1,  1,  1],
+            [1,  0, 1],
+            [1, 1,  1],
         ]
 
     @staticmethod
-    def _shape_7() -> list[list[bool]]:
+    def _shape_7() -> list[list[int]]:
         return [
-            [True,  True,  True ],
-            [False, False, True ],
-            [False, False,  True],
-            [False, False,  True],
-            [False, False,  True],
+            [1,  1,  1],
+            [0, 0, 1],
+            [0, 0,  1],
+            [0, 0,  1],
+            [0, 0,  1],
         ]
 
     @staticmethod
-    def _shape_8() -> list[list[bool]]:
+    def _shape_8() -> list[list[int]]:
         return [
-            [True, True,  True],
-            [True,  False, True ],
-            [True, True,  True],
-            [True,  False, True ],
-            [True, True,  True],
+            [1, 1,  1],
+            [1,  10, 1],
+            [1, 1,  1],
+            [1,  10, 1],
+            [1, 1,  1],
         ]
 
     @staticmethod
-    def _shape_9() -> list[list[bool]]:
+    def _shape_9() -> list[list[int]]:
         return [
-            [True, True,  True],
-            [True,  False, True ],
-            [True, True,  True ],
-            [False, False, True ],
-            [True,  True,  True],
+            [1, 1,  1],
+            [1,  10, 1],
+            [1, 1,  1],
+            [0, 0, 1],
+            [1,  1,  1],
         ]

@@ -1,1 +1,4 @@
-from mazegen.maze_generation import MazeGenerator
+from mazegen.mazegenerator import MazeGenerator
+
+
+__all__ = ["MazeGenerator"]

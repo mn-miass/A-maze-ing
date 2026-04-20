@@ -1,50 +1,47 @@
-def bin_to_decimal(block):
-    hexa_block = []
-    for i in range(len(block)):
-        hex_row = []
-        for j in range(len(block[i])):
-            value = 15
-            if block[i][j]:
-                if i != 0 and block[i - 1][j]:
-                    value -= 1
-                if i != len(block) - 1 and block[i + 1][j]:
-                    value -= 4
-                if j != 0 and block[i][j - 1]:
-                    value -= 8
-                if j != len(block[i]) and block[i][j + 1]:
-                    value -= 2
-            hex_row.append(value)
-        hexa_block.append(hex_row)
-    return hexa_block
+NORTH = 1
+EAST = 2
+SOUTH = 4
+WEST = 8
 
 
-def hexa_to_bin(block):
-    bin_block = []
-    for i in range(len(block)):
-        bin_row = []
-        for j in range(len(block[i])):
-            bin_row.append(block[i][j] > 0)
-        bin_block.append(bin_row)
-    return bin_block
+def decimal_to_bin(block: list[list[int]]) -> list[list[int]]:
+    """
+    Converts a decimal grid to a binary grid (0 or 1).
 
-def decimal_to_hexa(block):
-    hexa_block = []
+    Args:
+        block: 2D grid of integers.
+
+    Returns:
+        2D grid of 0s and 1s.
+    """
+    result = []
     for i in range(len(block)):
-        hexa_row = []
+        row = []
         for j in range(len(block[i])):
-            if block[i][j] >= 0 and block[i][j] <= 9:
-                hexa_row.append(block[i][j])
-            elif block[i][j] == 10:
-                hexa_row.append("A")
-            elif block[i][j] == 11:
-                hexa_row.append("B")
-            elif block[i][j] == 12:
-                hexa_row.append("C")
-            elif block[i][j] == 13:
-                hexa_row.append("D")
-            elif block[i][j] == 14:
-                hexa_row.append("E")
-            elif block[i][j] == 15:
-                hexa_row.append("F")
-        hexa_block.append(hexa_row)
-    return hexa_block
+            if block[i][j] > 0:
+                row.append(1)
+            else:
+                row.append(0)
+        result.append(row)
+    return result
+
+
+def decimal_to_hexa(block: list[list[int]]) -> list[list[str]]:
+    """
+    Converts a decimal grid to a hexadecimal character grid.
+
+    Each value (0-15) maps to its hex character (0-9, A-F).
+
+    Args:
+        block: 2D grid of integers (0-15).
+
+    Returns:
+        2D grid of hex characters.
+    """
+    result = []
+    for i in range(len(block)):
+        row = []
+        for j in range(len(block[i])):
+            row.append(format(block[i][j], 'X'))
+        result.append(row)
+    return result

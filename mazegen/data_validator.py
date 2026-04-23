@@ -164,12 +164,12 @@ class DataValidator():
             if self.width is None or self.height is None:
                 return
             if self.entry is not None:
-                x_e, y_e = self.entry
-                if x_e >= self.height or y_e >= self.width:
+                row_e, col_e = self.entry
+                if row_e >= self.height or col_e >= self.width:
                     self.entry = None
             if self.exit is not None:
-                x_x, y_x = self.exit
-                if x_x >= self.height or y_x >= self.width:
+                row_x, col_x = self.exit
+                if row_x >= self.height or col_x >= self.width:
                     self.exit = None
         except (KeyError, TypeError):
             pass

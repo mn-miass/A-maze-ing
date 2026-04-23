@@ -50,7 +50,7 @@ def test_key_value_validator_valid(tmp_path: Any) -> None:
         "WIDTH=20",
         "HEIGHT=15",
         "ENTRY=0,0",
-        "EXIT=14,14",
+        "EXIT=14,19",  # Row 14, Col 19. Valid for HEIGHT=15, WIDTH=20
         f"OUTPUT_FILE={maze_file}",
         "PERFECT=True"
     ]
@@ -60,7 +60,7 @@ def test_key_value_validator_valid(tmp_path: Any) -> None:
     assert validator.valid_dict["WIDTH"] == 20
     assert validator.valid_dict["HEIGHT"] == 15
     assert validator.valid_dict["ENTRY"] == (0, 0)
-    assert validator.valid_dict["EXIT"] == (14, 14)
+    assert validator.valid_dict["EXIT"] == (14, 19)
 
 
 def test_key_value_validator_missing_keys() -> None:
@@ -85,6 +85,21 @@ def test_key_value_validator_invalid_values() -> None:
     assert "PERFECT" not in validator.valid_dict
     assert "WIDTH" in validator.errors
     assert "PERFECT" in validator.errors
+
+
+def test_key_value_validator_wide_maze() -> None:
+    valid_lines = [
+        "WIDTH=30",
+        "HEIGHT=10",
+        "ENTRY=0,29",  # Row 0, Col 29. Should pass.
+        "EXIT=9,0",    # Row 9, Col 0. Should pass.
+        "OUTPUT_FILE=maze.txt",
+        "PERFECT=True"
+    ]
+    validator = KeyValueValidator(valid_lines)
+    assert validator.is_validated is True
+    assert validator.valid_dict["ENTRY"] == (0, 29)
+    assert validator.valid_dict["EXIT"] == (9, 0)
 
 
 def test_log_file(tmp_path: Any) -> None:

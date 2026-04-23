@@ -101,22 +101,22 @@ class KeyValueValidator():
             self._invalidate(key, value)
 
     def _check_entry_exit(self, key: str, value: Any) -> None:
-        """Validates ENTRY and EXIT as 'x,y' integer coordinate pairs."""
+        """Validates ENTRY and EXIT as 'row,col' integer coordinate pairs."""
         try:
             raw = str(value)
             if "," not in raw:
                 raise ValueError
 
-            y_str, x_str = raw.split(",", 1)
-            x_int = int(x_str.strip())
-            y_int = int(y_str.strip())
+            row_str, col_str = raw.split(",", 1)
+            row_int = int(row_str.strip())
+            col_int = int(col_str.strip())
 
-            if x_int < 0 or y_int < 0:
+            if row_int < 0 or col_int < 0:
                 self.errors[key] = (f"{key} coordinates must be non-negative "
                                     "integers")
                 raise ValueError
 
-            self.valid_dict[key] = (x_int, y_int)
+            self.valid_dict[key] = (row_int, col_int)
         except (ValueError, TypeError):
             if not self.errors.get(key):
                 self.errors[key] = f"{key} must be in the format 'x,y'"
@@ -185,10 +185,10 @@ class KeyValueValidator():
 
     def _check_entry_exit_location(self, key: str) -> None:
         try:
-            x, y = self.valid_dict[key]
-            if x >= self.valid_dict["HEIGHT"]:
+            row, col = self.valid_dict[key]
+            if row >= self.valid_dict["HEIGHT"]:
                 raise ValueError
-            if y >= self.valid_dict["WIDTH"]:
+            if col >= self.valid_dict["WIDTH"]:
                 raise ValueError
         except KeyError:
             pass

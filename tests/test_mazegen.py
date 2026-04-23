@@ -133,3 +133,18 @@ def test_maze_generator_orchestrator(tmp_path: Any) -> None:
     mg = MazeGenerator(data)
     assert mg.valid is True
     assert maze_file.exists()
+
+
+def test_data_validator_wide_maze() -> None:
+    data = {
+        "WIDTH": 30,
+        "HEIGHT": 10,
+        "ENTRY": (0, 29),
+        "EXIT": (9, 0),
+        "OUTPUT_FILE": "maze.txt",
+        "PERFECT": True
+    }
+    validator = DataValidator(data)
+    assert validator.valid is True
+    assert validator.entry == (0, 29)
+    assert validator.exit == (9, 0)
